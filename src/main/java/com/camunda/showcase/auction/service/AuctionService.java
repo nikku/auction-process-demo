@@ -12,7 +12,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.impl.context.Context;
 import org.activiti.engine.task.Task;
 
 import com.camunda.showcase.auction.domain.Auction;

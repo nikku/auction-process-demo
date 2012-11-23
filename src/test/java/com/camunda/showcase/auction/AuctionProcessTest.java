@@ -37,7 +37,9 @@ import com.camunda.showcase.auction.domain.Auction.CREATE;
 import com.camunda.showcase.auction.domain.Bid;
 import com.camunda.showcase.auction.process.AuctionProducer;
 import com.camunda.showcase.auction.repository.AuctionRepository;
+import com.camunda.showcase.auction.repository.BidRepository;
 import com.camunda.showcase.auction.service.AuctionService;
+import com.camunda.showcase.auction.service.BidException;
 import com.camunda.showcase.auction.service.TwitterPublishService;
 
 @RunWith(Arquillian.class)
@@ -78,6 +80,8 @@ public class AuctionProcessTest {
         .addClass(AuctionRepository.class)
         .addClass(AuctionProducer.class)
         .addClass(Auction.class)
+        .addClass(BidException.class)
+        .addClass(BidRepository.class)
         .addClass(Bid.class)
 				.addClass(Util.class);
 	}
@@ -155,11 +159,17 @@ public class AuctionProcessTest {
 
 		// end complete task 1 ///////////////
 
+    System.out.println(auction.getEndTime());
+    System.out.println(new Date());
+    
+    // add highest bid ///////////////////
+
+    auctionService.placeBid(auction.getId(), 200, "Klaus");
 
 		// wait for auction end //////////////
 
 		// wait for 6 seconds
-		Thread.sleep(6000);
+		Thread.sleep(10000);
 
 		// end wait for auction end //////////
 
