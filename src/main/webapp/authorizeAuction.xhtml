@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html">
+
+  <ui:composition template="/WEB-INF/template/auction-template.xhtml">
+
+    <ui:define name="pageHeader">
+
+      <!-- view parameters -->
+      <f:metadata>
+        <!-- task id -->
+        <f:viewParam id="taskId" name="taskId" />
+
+        <!-- callback url (to task list) -->
+        <f:viewParam id="callbackUrl" name="callbackUrl" />
+
+        <!-- init controller before the view is rendered -->
+        <f:event type="preRenderView"
+          listener="#{authorizeAuctionController.startTask(taskId)}" />
+      </f:metadata>
+    </ui:define>
+    <ui:define name="pageTitle">#{task.name}</ui:define>
+
+    <ui:define name="pageContent">
+      <h1>#{task.name}</h1>
+      <h:form id="authorizeAuctionForm">
+
+        <div>
+          Name:
+          <h:outputText value="#{authorizeAuction.name}" />
+        </div>
+        <div>
+          Description:
+          <h:outputText value="#{authorizeAuction.description}" />
+        </div>
+        <div>
+          End time:
+          <h:outputText value="#{authorizeAuction.endTime}">
+            <f:convertDateTime pattern="dd/MM/yyyy" />
+          </h:outputText>
+        </div>
+        <div>
+          <p>Do you want to authorized that auction?</p>
+        </div>
+        <div>
+          <h:commandButton value="Yes"
+            action="#{authorizeAuctionController.authorize(true, taskId, callbackUrl)}" />
+          <h:commandButton value="No"
+            action="#{authorizeAuctionController.authorize(false, taskId, callbackUrl)}" />
+        </div>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+</html>

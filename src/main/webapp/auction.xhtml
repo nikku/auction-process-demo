@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+  
+  <ui:composition template="/WEB-INF/template/auction-template.xhtml">
+  
+    <ui:define name="pageTitle">Active Auction</ui:define>
+    <ui:define name="pageHeader">
+      <f:metadata>
+        <f:viewParam name="auctionId" />
+        
+        <f:event type="preRenderView" listener="#{auctionDetailsController.setAuctionId(auctionId)}" />
+      </f:metadata>
+    </ui:define>
+    
+    <ui:define name="pageContent">
+      <h1>#{detailsAuction.name}</h1>
+      <div class="messages">
+        <h:messages globalOnly="true" infoClass="info" errorClass="error" />
+      </div>
+      <p>
+        Ends at 
+        <h:outputText value="#{detailsAuction.endTime}">
+          <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+        </h:outputText>
+      </p>
+      <p>
+        #{detailsAuction.description}
+      </p>
+      
+      <ui:fragment rendered="#{highestBid != null}">
+        <p>
+          <strong>Current highest bid: #{highestBid.amount} by #{highestBid.bidderName}</strong>
+        </p>
+      </ui:fragment>
+      
+      <h:form>
+        <div  style="border: solid 1px #ccc; border-radius: 3px; padding: 10px; margin-bottom: 10px">
+          Your Bid: <h:inputText value="#{auctionDetailsController.bid}" /><br/>
+          Your Name: <h:inputText value="#{auctionDetailsController.bidderName}" /><br/>
+          
+          <h:commandButton action="#{auctionDetailsController.placeBid()}" value="Place bid" />
+        </div>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>

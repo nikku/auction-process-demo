@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://java.sun.com/jsf/facelets">
+  
+  <ui:composition template="/WEB-INF/template/auction-template.xhtml">
+  
+    <ui:define name="pageHeader">
+    
+    </ui:define>
+    <ui:define name="pageTitle">Create new Auction</ui:define>
+    
+    <ui:define name="pageContent">
+      <h:form>
+        <h1>Create new Auction</h1>
+        <div class="messages">
+          <h:messages globalOnly="true" infoClass="info" errorClass="error" />
+        </div>
+        <div>
+          <table>
+            <tr>
+              <td><label for="name">Name</label></td>
+              <td>
+                <h:inputText id="name"
+                             value="#{newAuction.name}">
+                  <f:ajax event="blur" render="nameMessage" />
+                  <f:validateBean validationGroups="com.camunda.showcase.auction.domain.Auction$CREATE" />
+                </h:inputText>   
+                <h:message for="name" id="nameMessage" />
+              </td>
+            </tr>
+            <tr>
+              <td><label for="description">Description</label></td>
+              <td>
+                <h:inputText 
+                  id="description"
+                  value="#{newAuction.description}">
+                  
+                  <f:ajax event="blur" render="descriptionMessage" />
+                  <f:validateBean validationGroups="com.camunda.showcase.auction.domain.Auction$CREATE" />
+                </h:inputText>
+              
+                <h:message for="description" id="descriptionMessage" />
+                </td>
+            </tr>
+            <tr>
+              <td><label for="endTime">End time</label></td>
+              <td>
+                <h:inputText id="endTime" value="#{newAuction.endTime}">
+                  <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                  <f:ajax event="blur" render="endTimeMessage" />
+                  <f:validateBean validationGroups="com.camunda.showcase.auction.domain.Auction$CREATE" />
+                </h:inputText>
+                
+                <h:message for="endTime" id="endTimeMessage" />
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <h:commandButton value="Create auction"
+                  action="#{newAuctionController.createAuction()}">
+                </h:commandButton>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>

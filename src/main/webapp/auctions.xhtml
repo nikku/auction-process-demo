@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+  
+  <ui:composition template="/WEB-INF/template/auction-template.xhtml">
+  
+    <ui:define name="pageTitle">Active Auctions</ui:define>
+    
+    <ui:define name="pageContent">
+      <h1>Bid like crazy! Many auctions open!</h1>
+      
+      <div class="messages">
+        <h:messages infoClass="info" errorClass="error" />
+      </div>
+      
+      <ui:repeat var="activeAuction" value="#{activeAutions}">
+      
+        <div style="border: solid 1px #ccc; border-radius: 3px; padding: 10px; margin-bottom: 10px">
+          <strong>
+            <h:outputLink value="auction.jsf?auctionId=#{activeAuction.id}">
+              <h:outputText value="#{activeAuction.name}" />
+            </h:outputLink>
+          </strong><br/>
+          <small>
+            <h:outputText value="#{activeAuction.description}" />
+          </small>
+        </div>
+      </ui:repeat>
+    </ui:define>
+  </ui:composition>
+
+</html>

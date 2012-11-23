@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://java.sun.com/jsf/facelets">
+  
+  <h:head>
+    <title>Auction App - <ui:insert name="pageTitle">Empty Title</ui:insert></title>
+    
+    <style type="text/css">
+    
+      html, body {
+        font-family: Verdana;
+      }
+      
+      #navigation a {
+        display: inline-block;
+        margin-right: 5px;
+        padding: 3px 5px;
+        
+        background-color: #ccc;
+        text-decoration: none;
+      }
+      
+      #navigation a {
+        background-color: #ddd;
+      }
+      
+      #navigation a.highlight {
+        border: solid 5px fuchsia;
+      }
+      
+      .messages ul {
+        padding: 0;
+        background: #eee;
+        padding: 10px;
+        border: #777;
+      }
+      
+      .messages ul li {
+        list-style: none;
+      }
+    </style>
+    
+    <ui:insert name="pageHeader" />
+  </h:head>
+  
+  <h:body>
+  
+    <div id="navigation">
+      <h:outputLink value="index.jsf"><strong>Auction App</strong></h:outputLink>
+      <h:outputLink value="auctions.jsf" class="highlight">Open Auctions</h:outputLink>
+      
+      <ui:insert name="pageAdditionalNavigation"></ui:insert>
+    </div>
+    
+    <div id="content">
+      <ui:insert name="pageContent"></ui:insert>
+    </div>
+  </h:body>
+</html>

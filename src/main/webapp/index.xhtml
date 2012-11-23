@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+  
+  <ui:composition template="/WEB-INF/template/auction-template.xhtml">
+  
+    <ui:define name="pageTitle">Start</ui:define>
+    <ui:define name="pageAdditionalNavigation">
+      <a href="http://localhost:8080/tasklist" target="_blank">Tasklist</a>
+      <h:outputLink value="newAuction.jsf">New Auction</h:outputLink>
+    </ui:define>
+    
+    <ui:define name="pageContent">
+      <h1>Welcome to the auction application!</h1>
+      <h:messages globalOnly="true"/>
+    </ui:define>
+  </ui:composition>
+
+</html>
